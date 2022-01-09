@@ -4,7 +4,7 @@ COPY . .
 RUN mvn install
 
 # Inject the JAR file into a new container to keep the file small
-FROM FROM openjdk:8-jre
+FROM openjdk:8-jre
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
