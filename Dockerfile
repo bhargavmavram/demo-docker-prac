@@ -1,9 +1,4 @@
-FROM ubuntu:16.04
-
-RUN apt-get update && apt-get install -y python python-pip
-
-RUN pip install flask 
-
-COPY app.py /opt/
-
-ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0 --port=8080
+FROM openjdk:8-jdk-alpine
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} test.prac-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/test.prac-0.0.1-SNAPSHOT.jar"]
